@@ -1,0 +1,12 @@
+snowflake:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_SANDBOX_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_SANDBOX_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      database: CUBE_DEMO
+      warehouse: CUBE_DEMO_WH
+      schema: JAFFLE_SHOP
+      threads: 8

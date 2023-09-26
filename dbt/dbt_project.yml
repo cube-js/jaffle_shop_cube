@@ -1,0 +1,33 @@
+name: "jaffle_shop"
+version: "2.1.0"
+config-version: 2
+
+profile: "snowflake"
+require-dbt-version: ">=1.6.0"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["jaffle-data"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+vars:
+  truncate_timespan_to: "{{ current_timestamp() }}"
+  "dbt_date:time_zone": "America/Los_Angeles"
+
+seeds:
+  jaffle_shop:
+    +schema: jaffle_shop_raw
+
+models:
+  jaffle_shop:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
