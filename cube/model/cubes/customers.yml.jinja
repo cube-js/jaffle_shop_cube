@@ -1,10 +1,10 @@
-{% set model = get_model('customers') %}
+{% set model = dbt_model('customers') %}
 
 cubes:
-  - {{ as_cube(model) }}
+  - {{ model.as_cube() }}
 
     dimensions:
-      {{ as_dimensions(model) }}
+      {{ model.as_dimensions() }}
 
       - name: customer_id
         sql: customer_id

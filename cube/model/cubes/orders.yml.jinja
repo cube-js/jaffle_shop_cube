@@ -1,15 +1,15 @@
-{% set model = get_model('orders') %}
+{% set model = dbt_model('orders') %}
 
 cubes:
-  - {{ as_cube(model) }}
+  - {{ model.as_cube() }}
 
     joins:
       - name: customers
-        sql: "{CUBE.customer_od} = {customers.customer_id}"
+        sql: "{CUBE.customer_id} = {customers.customer_id}"
         relationship: many_to_one
 
     dimensions:
-      {{ as_dimensions(model) }}
+      {{ model.as_dimensions() }}
       
       - name: order_id
         sql: order_id
