@@ -1,0 +1,17 @@
+{% set model = get_model('customers') %}
+
+cubes:
+  - {{ as_cube(model) }}
+
+    dimensions:
+      {{ as_dimensions(model) }}
+
+      - name: customer_id
+        sql: customer_id
+        type: number
+        primary_key: true
+        shown: true
+
+    measures:
+      - name: count
+        type: count
