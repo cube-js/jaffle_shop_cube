@@ -1,0 +1,28 @@
+{% set model = get_model('orders') %}
+
+cubes:
+  - {{ as_cube(model) }}
+
+    joins:
+      - name: customers
+        sql: "{CUBE.customer_od} = {customers.customer_id}"
+        relationship: many_to_one
+
+    dimensions:
+      {{ as_dimensions(model) }}
+      
+      - name: order_id
+        sql: order_id
+        type: number
+        primary_key: true
+        shown: true
+
+    measures:
+      - name: count
+        type: count
+        description: "Count of orders"
+
+      - name: total_sum
+        sql: order_total
+        type: sum
+        description: "Sum of total order amonunt. Includes tax + revenue."
