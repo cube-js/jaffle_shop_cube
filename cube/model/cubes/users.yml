@@ -1,0 +1,13 @@
+# For testing driver_factory
+cubes:
+  - name: users
+    sql_table: public.users
+
+    measures:
+      - name: count
+        type: count
+
+    dimensions:
+      - name: first_name
+        sql: first_name
+        type: string
