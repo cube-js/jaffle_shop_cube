@@ -1,10 +1,10 @@
-from cube import config
+from cube import config, file_repository
 
 # config.schema_path = 'model'
 
 # config.base_path = '/cube-api'
 
-# Not tested
+# TODO: Not tested
 # config.web_sockets_base_path = '/cube-web-sockets'
 
 # @config('logger')
@@ -30,10 +30,38 @@ from cube import config
 # def context_to_api_scopes(context: dict, default_scopes: list[str]) -> list[str]:
 #   return ['meta', 'data', 'graphql']
 
-# contextToAppId
-# contextToOrchestratorId
-# repositoryFactory
-# checkAuth
+# @config('context_to_app_id')
+# def context_to_app_id(ctx: dict) -> str:
+#   return f"CUBE_APP_{ctx['securityContext']['tenant_id']}"
+
+# @config('context_to_orchestrator_id')
+# def context_to_orchestrator_id(ctx: dict) -> str:
+#   return f"CUBE_APP_{ctx['securityContext']['tenant_id']}"
+
+# @config('repository_factory')
+# def repository_factory(ctx: dict) -> list[dict]:
+#   return file_repository('model')
+ 
+# @config('repository_factory')
+# def repository_factory(ctx: dict) -> list[dict]:
+#   context = ctx['securityContext']
+ 
+#   return [
+#     {
+#       'fileName': 'file.js',
+#       'content': 'cube("foo", {sql_table:"123",measures:{count:{type:"count"}}})'
+#     }
+#   ]
+ 
+# @config('check_auth')
+# def check_auth(ctx: dict, token: str) -> None:
+#   context = ctx['securityContext']
+
+#   if token == 'my_secret_token':
+#     return
+
+#   raise Exception('Access denied')
+
 # checkSqlAuth
 # canSwitchSqlUser
 
