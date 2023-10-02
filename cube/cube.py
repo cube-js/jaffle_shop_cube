@@ -62,8 +62,27 @@ from cube import config, file_repository
 
 #   raise Exception('Access denied')
 
-# checkSqlAuth
-# canSwitchSqlUser
+# @config('check_sql_auth')
+# def check_sql_auth(req: dict, user_name: str) -> dict:
+#   if user_name == 'my_user':
+#     return {
+#       'password': 'my_password',
+#       'securityContext': {
+#         'some': 'data'
+#       }
+#     }
+
+#   raise Exception('Access denied')
+  
+# @config('can_switch_sql_user')
+# def can_switch_sql_user(current_user: str, new_user: str) -> dict:
+#   if current_user == 'admin':
+#     return True
+
+#   if current_user == 'service':
+#     return new_user != 'admin'
+
+#   return False
 
 # @config('query_rewrite')
 # def query_rewrite(query: dict, ctx: dict) -> dict:
@@ -78,8 +97,33 @@ from cube import config, file_repository
   
 #   return query
 
-# preAggregationsSchema
-# schemaVersion
+# @config('query_rewrite')
+# def query_rewrite(query: dict, ctx: dict) -> dict:
+#   context = ctx['securityContext']
+ 
+#   if 'filter_by_region' in context:
+#     query['filters'].append({
+#       'member': 'regions.id',
+#       'operator': 'equals',
+#       'values': [context['region_id']],
+#     })
+ 
+#   return query
+
+# @config('pre_aggregations_schema')
+# def pre_aggregations_schema(ctx: dict) -> str:
+#   return f"pre_aggregations_{ctx['securityContext']['tenant_id']}"
+
+# import random
+
+# @config('schema_version')
+# def schema_version(ctx: dict) -> str:
+#   # Don't do this!
+#   # Data model would be recompiled on each request
+#   context = ctx['securityContext']
+
+#   return random.random()
+
 # scheduledRefreshTimer
 # scheduledRefreshTimeZones
 # scheduledRefreshContexts
