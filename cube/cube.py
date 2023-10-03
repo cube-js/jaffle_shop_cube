@@ -4,7 +4,7 @@ from cube import config, file_repository
 
 # config.base_path = '/cube-api'
 
-# TODO: Not tested
+# TODO: Need to test
 # config.web_sockets_base_path = '/cube-web-sockets'
 
 # @config('logger')
@@ -53,14 +53,19 @@ from cube import config, file_repository
 #     }
 #   ]
  
-# @config('check_auth')
-# def check_auth(ctx: dict, token: str) -> None:
-#   context = ctx['securityContext']
+@config('check_auth')
+def check_auth(ctx: dict, token: str) -> None:
+  ctx['securityContext'] = {
+    'tenant_id': 888
+  }
+  return
+  # context = ctx['securityContext']
+  # print(token)
 
-#   if token == 'my_secret_token':
-#     return
+  # if token == 'my_secret_token':
+  #   return
 
-#   raise Exception('Access denied')
+  # raise Exception('Access denied')
 
 # @config('check_sql_auth')
 # def check_sql_auth(req: dict, user_name: str) -> dict:
@@ -124,30 +129,92 @@ from cube import config, file_repository
 
 #   return random.random()
 
-# scheduledRefreshTimer
-# scheduledRefreshTimeZones
-# scheduledRefreshContexts
-# extendContext
-# compilerCacheSize
-# maxCompilerCacheKeepAlive
-# updateCompilerCacheKeepAlive
-# allowUngroupedWithoutPrimaryKey
-# telemetry
-# http.cors
+# config.scheduled_refresh_timer = 60
+
+# config.scheduled_refresh_time_zones = [
+#   'America/Vancouver',
+#   'America/Toronto'
+# ]
+
+# @config('scheduled_refresh_contexts')
+# def scheduled_refresh_contexts():
+#   return [
+#     {
+#       'securityContext': {
+#         'tenant_id': 111,
+#         'bucket': 'demo'
+#       }
+#     },
+#     {
+#       'securityContext': {
+#         'tenant_id': 222,
+#         'bucket': 'demo_2'
+#       }
+#     }
+#   ]
+
+# TODO: Need to test
+# @config('extend_context')
+# def extend_context(req: dict) -> dict:
+#   return {
+#     active_organization: req['headers']['active_organization']
+#   }
+
+# @config('context_to_app_id')
+# def context_to_app_id(ctx: dict) -> dict:
+#   return f"CUBE_APP_{ctx['active_organization']}"
+
+# config.compiler_cache_size = 1
+
+# config.max_compiler_cache_keep_alive = 100
+
+# config.update_compiler_cache_keep_alive = True
+
+# config.allow_ungrouped_without_primary_key = True
+
+# config.telemetry = False
+
+# config.http = {
+#   'cors': {
+#     'origin': '*',
+#     'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+#     'preflightContinue': False,
+#     'optionsSuccessStatus': 204,
+#     'maxAge': 86400,
+#     'credentials': True
+#   }
+# }
+
+# TODO: Need to test
 # jwt
-# jwkUrl
-# key
-# algorithms
-# issuer
-# audience
-# subject
-# claimsNamespace
-# cacheAndQueueDriver
-# orchestratorOptions
-# allowJsDuplicatePropsInSchema
-# initApp
-# processSubscriptionsInterval
-# QueueOptions
-# RequestContext
-# securityContext
-# SchemaFileRepository
+
+# config.cache_and_queue_driver = 'cubestore'
+
+# config.orchestrator_options = {
+#   'continueWaitTimeout': 1000,
+#   'rollupOnlyMode': True,
+#   'queryCacheOptions': {
+#     'refreshKeyRenewalThreshold': 30,
+#     'backgroundRenew': True,
+#     'queueOptions': {
+#       'concurrency': 3,
+#       'executionTimeout': 1000,
+#       'orphanedTimeout': 1000,
+#       'heartBeatInterval': 1000
+#     }
+#   },
+#   'preAggregationsOptions': {
+#     'externalRefresh': False,
+#     'maxPartitions': 100,
+#     'queueOptions': {
+#       'concurrency': 3,
+#       'executionTimeout': 1000,
+#       'orphanedTimeout': 1000,
+#       'heartBeatInterval': 1000
+#     }
+#   }
+# }
+
+# config.allow_js_duplicate_props_in_schema = False
+
+# config.process_subscriptions_interval = 1000

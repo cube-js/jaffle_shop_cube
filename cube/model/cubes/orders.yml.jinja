@@ -21,6 +21,7 @@ cubes:
       - name: count
         type: count
         description: "Count of orders"
+        public: {{ COMPILE_CONTEXT.securityContext.tenant_id == 888 }}
 
     pre_aggregations:
       - name: main
