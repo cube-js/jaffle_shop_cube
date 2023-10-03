@@ -1,7 +1,7 @@
-from cube import template
+from cube import TemplateContext
 from cube_dbt import Dbt
 
-context = template.JinjaContext()
+template = TemplateContext()
 
 manifest_url = 'https://cube-dbt-integration.s3.amazonaws.com/manifest-jaffle-shop-cube.json'
 
@@ -11,6 +11,6 @@ dbt = (
   .filter(paths=['marts/'])
 )
 
-@context.function
+@template.function('dbt_model')
 def dbt_model(name):
   return dbt.model(name)
