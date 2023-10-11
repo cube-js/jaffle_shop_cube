@@ -1,4 +1,4 @@
-{% set model = dbt_model('orders') %}
+{# {% set model = dbt_model('orders') %}
 
 cubes:
   - {{ model.as_cube() }}
@@ -10,14 +10,7 @@ cubes:
 
     dimensions:
       {{ model.as_dimensions() }}
-      
-      - name: order_id
-        sql: order_id
-        type: number
-        primary_key: true
-        shown: true
 
     measures:
       - name: count
-        type: count
-        description: "Count of orders"
+        type: count #}

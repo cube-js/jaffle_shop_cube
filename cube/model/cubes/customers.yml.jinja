@@ -1,0 +1,15 @@
+{# {% set model = dbt_model('customers') %}
+
+cubes:
+  - {{ model.as_cube() }}
+
+    dimensions:
+      {{ model.as_dimensions() }}
+
+    measures:
+      - name: count
+        type: count
+
+      - name: count_x2
+        sql: "COUNT(*) * 2"
+        type: number #}
