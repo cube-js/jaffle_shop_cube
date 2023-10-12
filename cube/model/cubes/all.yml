@@ -1,6 +1,6 @@
 cubes:
   {% for model in dbt_models() %}
-  - {{ model.as_cube() }}
+  - {{ model.as_cube() | safe }}
 
     measures:
       - name: count
