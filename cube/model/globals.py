@@ -7,6 +7,9 @@ manifest_url = 'https://cube-dbt-integration.s3.amazonaws.com/manifest.json'
 
 dbt = Dbt.from_url(manifest_url).filter(paths=['marts/'])
 
+for model in dbt.models:
+  print(model.name)
+
 @template.function('dbt_models')
 def dbt_models():
   return dbt.models
