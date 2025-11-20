@@ -1,0 +1,37 @@
+cubes:
+  - name: products
+    sql_table: JAFFLE_SHOP.PRODUCTS
+    
+    dimensions:
+      - name: product_id
+        sql: PRODUCT_ID
+        type: string
+        primary_key: true
+        
+      - name: product_name
+        sql: PRODUCT_NAME
+        type: string
+        
+      - name: product_type
+        sql: PRODUCT_TYPE
+        type: string
+        
+      - name: product_description
+        sql: PRODUCT_DESCRIPTION
+        type: string
+        
+      - name: is_food_item
+        sql: IS_FOOD_ITEM
+        type: boolean
+        
+      - name: is_drink_item
+        sql: IS_DRINK_ITEM
+        type: boolean
+        
+    measures:
+      - name: count
+        type: count
+        
+      - name: avg_product_price
+        sql: PRODUCT_PRICE
+        type: avg

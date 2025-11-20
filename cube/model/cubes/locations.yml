@@ -1,0 +1,29 @@
+cubes:
+  - name: locations
+    sql_table: JAFFLE_SHOP.LOCATIONS
+    
+    dimensions:
+      - name: location_id
+        sql: LOCATION_ID
+        type: string
+        primary_key: true
+        
+      - name: location_name
+        sql: LOCATION_NAME
+        type: string
+        
+      - name: tax_rate
+        sql: TAX_RATE
+        type: number
+        
+      - name: opened_at
+        sql: OPENED_AT
+        type: time
+        
+    measures:
+      - name: count
+        type: count
+        
+      - name: avg_tax_rate
+        sql: TAX_RATE
+        type: avg

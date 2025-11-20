@@ -1,0 +1,54 @@
+cubes:
+  - name: order_items
+    sql_table: JAFFLE_SHOP.ORDER_ITEMS
+    
+    dimensions:
+      - name: order_item_id
+        sql: ORDER_ITEM_ID
+        type: string
+        primary_key: true
+        
+      - name: order_id
+        sql: ORDER_ID
+        type: string
+        
+      - name: product_id
+        sql: PRODUCT_ID
+        type: string
+        
+      - name: ordered_at
+        sql: ORDERED_AT
+        type: time
+        
+      - name: is_food_item
+        sql: IS_FOOD_ITEM
+        type: boolean
+        
+      - name: is_drink_item
+        sql: IS_DRINK_ITEM
+        type: boolean
+        
+    measures:
+      - name: count
+        type: count
+        
+      - name: total_product_price
+        sql: PRODUCT_PRICE
+        type: sum
+        
+      - name: total_supply_cost
+        sql: SUPPLY_COST
+        type: sum
+        
+      - name: avg_product_price
+        sql: PRODUCT_PRICE
+        type: avg
+        
+      - name: item_gross_profit
+        sql: PRODUCT_PRICE - SUPPLY_COST
+        type: sum
+        
+      - name: item_gross_margin
+        sql: (PRODUCT_PRICE - SUPPLY_COST) / PRODUCT_PRICE
+        type: avg
+        format: percent

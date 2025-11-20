@@ -1,8 +1,0 @@
-{# cubes:
-  {% for model in dbt_models() %}
-  - {{ model.as_cube() }}
-
-    measures:
-      - name: count
-        type: count
-  {% endfor %} #}

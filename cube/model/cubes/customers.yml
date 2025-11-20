@@ -1,0 +1,49 @@
+cubes:
+  - name: customers
+    sql_table: JAFFLE_SHOP.CUSTOMERS
+    
+    dimensions:
+      - name: customer_id
+        sql: CUSTOMER_ID
+        type: string
+        primary_key: true
+        
+      - name: customer_name
+        sql: CUSTOMER_NAME
+        type: string
+        
+      - name: customer_type
+        sql: CUSTOMER_TYPE
+        type: string
+        
+      - name: first_ordered_at
+        sql: FIRST_ORDERED_AT
+        type: time
+        
+      - name: last_ordered_at
+        sql: LAST_ORDERED_AT
+        type: time
+        
+    measures:
+      - name: count
+        type: count
+        
+      - name: total_lifetime_spend
+        sql: LIFETIME_SPEND
+        type: sum
+        
+      - name: total_lifetime_spend_pretax
+        sql: LIFETIME_SPEND_PRETAX
+        type: sum
+        
+      - name: avg_lifetime_spend
+        sql: LIFETIME_SPEND
+        type: avg
+        
+      - name: total_lifetime_orders
+        sql: COUNT_LIFETIME_ORDERS
+        type: sum
+        
+      - name: avg_lifetime_orders
+        sql: COUNT_LIFETIME_ORDERS
+        type: avg

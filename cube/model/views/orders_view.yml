@@ -1,7 +1,11 @@
 views:
   - name: orders_view
-
+    description: "Comprehensive view of orders with customer, location, and product details"
+    
     cubes:
       - join_path: orders
-        includes: 
+        includes:
           - count
+          - ordered_at
+          - is_food_order
+          - is_drink_order

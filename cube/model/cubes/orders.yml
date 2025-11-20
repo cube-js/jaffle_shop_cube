@@ -1,0 +1,68 @@
+cubes:
+  - name: orders
+    sql_table: JAFFLE_SHOP.ORDERS
+    
+    dimensions:
+      - name: order_id
+        sql: ORDER_ID
+        type: string
+        primary_key: true
+        
+      - name: customer_id
+        sql: CUSTOMER_ID
+        type: string
+        
+      - name: location_id
+        sql: LOCATION_ID
+        type: string
+        
+      - name: ordered_at
+        sql: ORDERED_AT
+        type: time
+        
+      - name: is_food_order
+        sql: IS_FOOD_ORDER
+        type: boolean
+        
+      - name: is_drink_order
+        sql: IS_DRINK_ORDER
+        type: boolean
+        
+    measures:
+      - name: count
+        type: count
+        
+      - name: total_revenue
+        sql: ORDER_TOTAL
+        type: sum
+        
+      - name: total_tax
+        sql: TAX_PAID
+        type: sum
+        
+      - name: total_cost
+        sql: ORDER_COST
+        type: sum
+        
+      - name: avg_order_value
+        sql: ORDER_TOTAL
+        type: avg
+        
+      - name: gross_profit
+        sql: ORDER_TOTAL - ORDER_COST
+        type: sum
+        
+      - name: gross_margin
+        sql: (ORDER_TOTAL - ORDER_COST) / ORDER_TOTAL
+        type: avg
+        format: percent
+        
+    joins:
+      - name: customers
+        sql: "{CUBE}.customer_id = {customers}.customer_id"
+        
+      - name: locations
+        sql: "{CUBE}.location_id = {locations}.location_id"
+        
+      - name: order_items
+        sql: "{CUBE}.order_id = {order_items}.order_id"
