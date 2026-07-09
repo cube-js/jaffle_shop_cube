@@ -3,7 +3,7 @@ models:
     description: Product (food and drink items that can be ordered) data with basic cleaning and transformation applied, one row per product.
     columns:
       - name: product_id
-        description: The unique key for each product.
+        description: The unique identifier for each product. Used as the primary key of the products table.
         tests:
           - not_null
           - unique
