@@ -3,7 +3,7 @@ models:
     description: Order data with basic cleaning and transformation applied, one row per order.
     columns:
       - name: order_id
-        description: The unique key for each order.
+        description: The unique identifier for each order. Used as the primary key of the orders table.
         tests:
           - not_null
           - unique
