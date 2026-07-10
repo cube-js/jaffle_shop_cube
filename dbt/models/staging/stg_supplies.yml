@@ -6,7 +6,7 @@ models:
       One row per supply cost, not per supply. As supply costs fluctuate they receive a new row with a new UUID. Thus there can be multiple rows per supply_id.
     columns:
       - name: supply_uuid
-        description: The unique key of our supplies per cost.
+        description: The unique identifier for each supply cost. Used as the primary key of the supplies table.
         tests:
           - not_null
           - unique
