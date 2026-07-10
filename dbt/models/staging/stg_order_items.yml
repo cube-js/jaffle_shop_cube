@@ -3,7 +3,7 @@ models:
     description: Individual food and drink items that make up our orders, one row per item.
     columns:
       - name: order_item_id
-        description: The unique key for each order item.
+        description: The unique identifier for each order item. Used as the primary key of the order_items table.
         tests:
           - not_null
           - unique
