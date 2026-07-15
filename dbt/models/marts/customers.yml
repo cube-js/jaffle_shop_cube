@@ -3,7 +3,7 @@ models:
     description: Customer overview data mart, offering key details for each unique customer. One row per customer.
     columns:
       - name: customer_id
-        description: The unique key of the orders mart.
+        description: The unique identifier for each customer. Used as the primary key of the customers mart.
         tests:
           - not_null
           - unique
